@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/StephanGerbeth/agency-boilerplate#readme",
   "devDependencies": {
-    "agency-environment": "git+https://git@github.com/StephanGerbeth/agency-environment.git#version/2.0",
+    "agency-environment": "git+https://git@github.com/StephanGerbeth/agency-environment.git",
     "agency-server": "git+https://git@github.com/StephanGerbeth/agency-server.git",
     "baqend": "^2.1.0",
     "fb": "^1.0.2",
