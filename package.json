@@ -29,10 +29,14 @@
   "devDependencies": {
     "agency-environment": "git+https://git@github.com/StephanGerbeth/agency-environment.git#version/2.0",
     "agency-server": "git+https://git@github.com/StephanGerbeth/agency-server.git",
+    "baqend": "^2.1.0",
     "fb": "^1.0.2",
     "htmlescape": "^1.1.0",
     "jshint": "^2.8.0",
-    "minimist": "^1.2.0"
+    "minimist": "^1.2.0",
+    "serviceworker-loader": "^0.1.0",
+    "web-push": "^2.1.1",
+    "worker-loader": "^0.7.0"
   },
   "dependencies": {
     "ampersand-collection": "^1.6.1",

@@ -37,6 +37,9 @@
             }, {
                 "module": "../../../../env/routes/getMenuConfig",
                 "options": {}
+            }, {
+                "module": "../../../../env/routes/notifier",
+                "options": {}
             }]
         },
         "websocket": {
