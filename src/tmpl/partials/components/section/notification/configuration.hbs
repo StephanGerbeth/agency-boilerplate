@@ -1,0 +1,33 @@
+---
+class: "controller left-to-right" #left-to-right oder right-to-left
+---
+{{#mixin "components/section" this class=class}}
+  {{#content "attributes"}}
+    data-partial="components/section/notification-configuration
+  {{/content}}
+  {{#content "placeholder"}}
+    <form class="controller" data-controller="./partials/fragments/Form" data-parsley-validate="">
+      <label>
+        <strong>Title:</strong>
+        <input name="title" type="text" required/>
+      </label>
+      <label>
+        <strong>Description:</strong>
+        <input name="body" type="text" required/>
+      </label>
+      <label>
+        <strong>ImageUrl:</strong>
+        <input name="icon" type="text" required/>
+      </label>
+      <label>
+        <strong>Url:</strong>
+        <input name="url" type="text" required/>
+      </label>
+      <label>
+        <strong>Require Interaction:</strong>
+        <input name="requireInteraction" type="checkbox" value="true"/>
+      </label>
+      <button type="submit">Submit</button>
+    </form>
+  {{/content}}
+{{/mixin}}

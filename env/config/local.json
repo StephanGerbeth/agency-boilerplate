@@ -126,6 +126,9 @@
             }, {
                 "module": "agency-server/lib/hapi/route/proxy",
                 "options": {}
+            }, {
+                "module": "../../../../env/routes/notifier",
+                "options": {}
             }]
         }
     }

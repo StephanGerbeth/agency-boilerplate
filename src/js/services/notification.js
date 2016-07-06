@@ -20,15 +20,20 @@ module.exports = new (AmpersandState.extend(dataTypeDefinition, {
     },
 
     create: function() {
-        serviceWorker().then(function(registration) {
-            subscribe(registration, function(id, auth) {
-                baqend.registerDevice(id, auth, function() {
-                    console.log('BOING');
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.ready.then(function() {
+                serviceWorker().then(function(registration) {
+                    subscribe(registration, function(id, auth) {
+                        console.log('Bücklers Output:', id, auth);
+                        baqend.registerDevice(id, auth, function() {
+                            console.log('BOING');
+                        });
+                    }.bind(this));
+                }.bind(this)).catch(function(err) {
+                    console.log('registration failed', err);
                 });
-            }.bind(this));
-        }.bind(this)).catch(function(err) {
-            console.log('registration failed', err);
-        });
+            });
+        }
     }
 
 
@@ -36,6 +41,7 @@ module.exports = new (AmpersandState.extend(dataTypeDefinition, {
 
 function subscribe(registration, callback) {
     registration.pushManager.subscribe({userVisibleOnly:true}).then(function(subscription) {
+        console.log(subscription);
         callback(getGCMRegistrationID(subscription.endpoint), getAuthData(subscription));
     }).catch(function(e) {
         if (Notification.permission === 'denied') {
@@ -64,9 +70,9 @@ function getAuthData(subscription) {
 }
 
 function getGCMRegistrationID(endpoint) {
-    if(startsWith(endpoint, 'https://android.googleapis.com/gcm/send')) {
+    // if(startsWith(endpoint, 'https://android.googleapis.com/gcm/send')) {
         var endpointParts = endpoint.split('/');
         return endpointParts[endpointParts.length - 1];
-    }
-    return null;
+    // }
+    // return null;
 }

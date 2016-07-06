@@ -11,7 +11,7 @@ global.addEventListener('message', function(event) {
 global.addEventListener('activate', function(event) {
     console.log('Activated', event);
 });
-global.addEventListener('push', function(event) {
+global.addEventListener('push', function(event) {    
     var notification = event.data.json();
     event.waitUntil(
         global.registration.showNotification(notification.title, notification.content)

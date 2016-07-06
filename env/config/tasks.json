@@ -180,7 +180,7 @@
         "script": "agency-environment/lib/webpack/plugins/uglify",
         "config": {
           "compress": {
-
+            "drop_console": false
           }
         }
       }],
