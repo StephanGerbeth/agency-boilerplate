@@ -219,7 +219,8 @@
       "files": {
         "src": ["./src/js/main.js"],
         "dest": "<%= destination %>/js/[name].js",
-        "library": ["[name]"]
+        "library": ["[name]"],
+        "publicPath": "/js/"
       }
     }, {
       "name": "embed",
