@@ -20,8 +20,11 @@ module.exports = new (AmpersandState.extend(dataTypeDefinition, {
     },
 
     create: function() {
+
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.ready.then(function() {
+
+            // navigator.serviceWorker.ready.then(function() {
+            //     console.log('WHAT');
                 serviceWorker().then(function(registration) {
                     subscribe(registration, function(id, auth) {
                         console.log('Bücklers Output:', id, auth);
@@ -32,11 +35,9 @@ module.exports = new (AmpersandState.extend(dataTypeDefinition, {
                 }.bind(this)).catch(function(err) {
                     console.log('registration failed', err);
                 });
-            });
+            // });
         }
     }
-
-
 }))();
 
 function subscribe(registration, callback) {
