@@ -17,6 +17,11 @@ module.exports = new (AmpersandState.extend(dataTypeDefinition, {
 
     initialize: function() {
         AmpersandState.prototype.initialize.apply(this, arguments);
+
+        $('body').on('click', function() {
+            console.log('WHAT');
+
+        });
     },
 
     create: function() {
@@ -36,9 +41,49 @@ module.exports = new (AmpersandState.extend(dataTypeDefinition, {
                     console.log('registration failed', err);
                 });
             // });
+        } else {
+            var permissionData = window.safari.pushNotification.permission('web.com.baqend.stephan');
+
+            checkRemotePermission(permissionData);
         }
     }
 }))();
+
+function checkRemotePermission(permissionData) {
+
+    if (permissionData.permission === 'default') {
+
+        // This is a new web service URL and its validity is unknown.
+
+        window.safari.pushNotification.requestPermission(
+
+            'https://local.baqend.com:8050', // The web service URL.
+
+            'web.com.baqend.stephan',     // The Website Push ID.
+
+            {}, // Data that you choose to send to your server to help you identify the user.
+
+            checkRemotePermission         // The callback function.
+
+        );
+
+    }
+
+    else if (permissionData.permission === 'denied') {
+
+        // The user said no.
+        console.log('NO');
+    }
+
+    else if (permissionData.permission === 'granted') {
+
+        // The web service URL is a valid push provider, and the user said yes.
+
+        // permissionData.deviceToken is now available to use.
+        console.log('YES', permissionData);
+    }
+
+}
 
 function subscribe(registration, callback) {
     registration.pushManager.subscribe({userVisibleOnly:true}).then(function(subscription) {

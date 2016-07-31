@@ -5,7 +5,7 @@
         "dev": false
     },
     "development": {
-        "host": "localhost",
+        "host": "local.baqend.com",
         "dest": "dev",
         "root": "./",
         "dev": true,
@@ -39,6 +39,12 @@
                 "options": {}
             }, {
                 "module": "../../../../env/routes/notifier",
+                "options": {}
+            }, {
+                "module": "../../../../env/routes/notifierApple",
+                "options": {}
+            }, {
+                "module": "../../../../env/routes/appleNotificationAuth",
                 "options": {}
             }]
         },
