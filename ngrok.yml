@@ -1,0 +1,7 @@
+region: eu
+update: true
+tunnels:
+  demo:
+    proto: http
+    addr: 8050
+    inspect: true

@@ -5,9 +5,13 @@ function Vector(x, y, z) {
         return new Vector(x, y, z);
     }
 
-    this.x = x || 0;
-    this.y = y || 0;
-    this.z = z || 0;
+    if(x === Object(x)) {        
+        this.reset(x);
+    } else {
+        this.x = x || 0;
+        this.y = y || 0;
+        this.z = z || 0;
+    }
 }
 
 Vector.prototype.x = 0;
@@ -52,6 +56,14 @@ Vector.prototype.resetByRad = function(rad) {
     this.y = Math.sin(rad);
     this.z = Math.tan(rad);
     return this;
+};
+
+Vector.prototype.toJSON = function() {
+    return {x: this.x, y: this.y, z: this.z};
+};
+
+Vector.prototype.toString = function() {
+    return JSON.stringify(this.toJSON());
 };
 
 Vector.prototype.add = function(vector){

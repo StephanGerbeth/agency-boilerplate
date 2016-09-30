@@ -23,11 +23,8 @@
                     "appKey": "UNSAFE: CHANGE ME"
                 }
             }, {
-                "module": "agency-server/lib/hapi/route/auth/session",
-                "options": {
-                    "appId": "1649448378651481",
-                    "appSecret": "f6ef2995e1483b161d013c49e86c0273"
-                }
+                "module": "../../../../env/routes/auth/session",
+                "options": {}
             }, {
                 "module": "agency-server/lib/hapi/route/static",
                 "options": {}
@@ -35,12 +32,21 @@
                 "module": "agency-server/lib/hapi/route/proxy",
                 "options": {}
             }, {
-                "module": "../../../../env/routes/getMenuConfig",
+                "module": "../../../../env/routes/facebook/setup",
+                "options": {
+                  "appId": "653149338194538",
+                  "appSecret": "01ea97f939594e0c4dd162a409fe1ba8"
+                }
+            }, {
+                "module": "../../../../env/routes/facebook/doPost",
+                "options": {}
+            }, {
+                "module": "../../../../env/routes/facebook/feed/subscription",
                 "options": {}
             }]
         },
         "websocket": {
-
+          "limitedUsers": 2
         },
         "webpack": {
           "entry": {

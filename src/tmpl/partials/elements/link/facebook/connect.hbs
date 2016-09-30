@@ -1,0 +1,18 @@
+---
+id: #string
+class: 'controller'
+url: "#image-link"
+title: "Image Link"
+target: "_self"
+rel: "next"
+permissions: "email"
+controllerTarget: #selector
+---
+{{#mixin "elements/link" this}}
+  {{#content "attributes"}}
+    data-partial="elements/link/facebook/connect"
+    data-controller="./partials/elements/link/facebook/Connect"
+    data-permissions="{{{permissions}}}"
+    data-target="{{{controllerTarget}}}"
+  {{/content}}
+{{/mixin}}
