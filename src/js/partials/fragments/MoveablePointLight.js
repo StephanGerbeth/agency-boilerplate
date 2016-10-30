@@ -14,7 +14,7 @@ module.exports = Controller.extend({
 
     initialize: function() {
         Controller.prototype.initialize.apply(this, arguments);
-
+        debugger;
         this.movePoint = new Vector();
         this.viewport = new Viewport(this.el.querySelector('.masked-content'), this.el.querySelector('.masked-content'));
         this.mask = this.el.querySelector('.mask');

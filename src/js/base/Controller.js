@@ -3,7 +3,11 @@
 var AmpersandView = require('ampersand-view');
 var dataTypeDefinition = require('./dataTypeDefinition');
 
-module.exports = AmpersandView.extend(dataTypeDefinition, {    
+module.exports = AmpersandView.extend(dataTypeDefinition, {
+
+    constructor: function() {
+        console.log('AJA');
+    },
 
     initialize: function(options) {
         AmpersandView.prototype.initialize.apply(this, arguments);

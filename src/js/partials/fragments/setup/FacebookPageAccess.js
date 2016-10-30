@@ -20,14 +20,35 @@ module.exports = Controller.extend({
             $.ajax('/facebook/setup', {
                 method: 'POST',
                 success: function() {
-                    $.ajax('/facebook/doPost', {
+                    $.ajax('/facebook/feed/post', {
                         method: 'POST',
                         data: {
-                            pageId: '211777805515561',
-                            message: 'Let\'s get ready to rumble! ' + Date.now()
+                            type: 'create',
+                            id: '211777805515561',
+                            data: {
+                                link: 'https://4c991553.eu.ngrok.io/dev/',
+                                message: 'Let\'s get ready to rumble! ' + Date.now()
+                            }
                         },
-                        success: function(result) {                            
-                            console.log('https://www.facebook.com/' + result.data.post_id);
+                        success: function(result) {
+                            console.log('https://www.facebook.com/', result.data.id);
+
+                            $.ajax('/facebook/feed/video', {
+                                method: 'POST',
+                                data: {
+                                    type: 'create',
+                                    id: '211777805515561',
+                                    status: 'LIVE_NOW',
+                                    data: {
+                                        title: 'sample title',
+                                        description: 'sample description',
+                                        save_vod: false
+                                    }
+                                },
+                                success: function(result) {
+                                    console.log('https://www.facebook.com/', result);
+                                }
+                            });
                         }
                     });
                 }

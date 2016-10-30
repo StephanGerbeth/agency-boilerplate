@@ -1,6 +1,7 @@
 "use strict";
 
 var facebookManager = require('../../../services/facebookManager');
+var Socket = require('agency-server/lib/websocket/Socket');
 
 exports.register = function (server, options, next) {
     server.register([require('../auth/x-hub')], function (err) {
@@ -23,6 +24,7 @@ exports.register = function (server, options, next) {
                 auth: 'x-hub-verify'
             },
             handler: function(request, reply) {
+                console.log('REGISTER FOR SUBCRIPTIONS');
                 reply(request.auth.credentials.challenge);
             }
         });
@@ -41,7 +43,6 @@ exports.register = function (server, options, next) {
                 }
             },
             handler: function(request, reply) {
-                console.log('PAYLOAD', request.payload);
                 reply(verifyRequest(request).then(function() {
                     console.log('POST');
                     return request
@@ -49,7 +50,7 @@ exports.register = function (server, options, next) {
                 }, function(message) {
                     console.log(message);
                     return request
-                        .code(500);
+                        .code(200);
                 }));
             }
         });
@@ -57,7 +58,7 @@ exports.register = function (server, options, next) {
 
     next();
 };
-
+ 
 function verifyRequest(request) {
     return new global.Promise(function (resolve, reject) {
         console.log('TADA', JSON.stringify(request.payload));
@@ -83,8 +84,26 @@ function verifyRequest(request) {
 }
 
 function verifyPageFeedEvent(e) {
-    console.log(e.value);
-    console.log(facebookManager.getAdmin().getPage(e.value.sender_id));
+    // console.log('SOCKET', Socket);
+    console.log('Verification Page Event', e);
+    if(facebookManager.hasAdmin()) {
+        switch(e.value.item) {
+            case 'video': {
+
+                break;
+            }
+            case 'comment': {
+                // console.log('POST', facebookManager.getAdmin().getPage(e.value.sender_id).getPost(e.value.post_id));
+                Socket.getChannel('/' + e.value.post_id).sockets[0].emit('comment:add.custom', {data: e.value});
+                break;
+            }
+            default: {
+                console.log(facebookManager.getAdmin().getPage(e.value.sender_id));
+                break;
+            }
+        }
+
+    }
 }
 
 exports.register.attributes = {

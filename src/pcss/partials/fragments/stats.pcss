@@ -1,0 +1,22 @@
+@import "./stats/bar.pcss";
+@import "./stats/progress.pcss";
+
+.partial[data-partial="fragments/stats"] {
+  position: relative;
+  font-size: 10em; 
+  width: 1em;
+  height: 1em;
+
+  > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+    width: 100%;
+
+    &.js-binding-visible {
+      visibility: visible;
+    }
+  }
+
+}

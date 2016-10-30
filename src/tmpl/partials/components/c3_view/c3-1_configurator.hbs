@@ -1,0 +1,19 @@
+---
+id: 'CONFIGURATOR'
+class: 'controller'
+---
+{{#mixin "components/c3_view" this}}
+  {{#content "attributes"}}
+    data-partial="components/c3_view/c3-1_configurator"
+    data-controller="./partials/components/view/Configurator"
+    {{#with target}}
+      data-target="{{{this}}}"
+    {{/with}}
+  {{/content}}
+  {{#content "placeholder"}}
+    {{{mixin "elements/headline/h1"}}}
+    <div class="content-container">
+
+    </div>
+  {{/content}}
+{{/mixin}}

@@ -1,0 +1,70 @@
+.partial[data-partial="fragments/ticker/entry"] {
+  display: inline-block;
+  width: 20em;
+  padding-right: 1em;
+
+  img {
+    border: 2px solid white;
+    border-radius: 50%;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    vertical-align: middle;
+    margin-right: 0.5em;
+    width: 3em;
+  }
+
+  blockquote {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0;
+    margin: 0;
+    white-space: normal;
+    width: 16em;
+
+    .cite {
+      overflow: hidden;
+      vertical-align: middle;
+      max-height: 2em;
+      line-height: 1em;
+      padding-right: 1em;
+
+      p {
+        margin-top: 0;
+        @mixin clearfix;
+
+        .highlight {
+          background-color: green;
+        }
+      }
+
+      > span.dot {
+        width: 5px;
+        height: 1em;
+        float: left;
+        background: yellow;
+
+        &:first-of-type {
+          // fix rounding in ff
+          margin-top: -1px;
+          //background: green;
+        }
+      }
+      > *:first-child {
+        float: right;
+        width: 100%;
+        margin-left: -5px;
+        margin-bottom: 0em;
+      }
+
+      &:after {
+        content: "\02026";
+        float: right;
+        position: relative;
+        top: -1em;
+
+        left: 100%;
+        width: 5px;
+        //background: red;
+      }
+    }
+  }
+}

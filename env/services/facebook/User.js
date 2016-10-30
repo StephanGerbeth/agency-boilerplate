@@ -24,7 +24,7 @@ class User {
     }
 
     getPage(id) {
-        return this.pages.find(function(page) {            
+        return this.pages.find(function(page) {
             return page.getId() === id.toString();
         });
     }
@@ -33,7 +33,7 @@ class User {
         facebook.getPages(this[accessToken], function(pages) {
             this.pages = pages.map(function(page) {
                 return new Page(page);
-            });
+            });            
             resolve(this.pages);
         }.bind(this), function() {
             reject();

@@ -1,0 +1,39 @@
+---
+
+---
+<form class="partial" data-partial="fragments/form/configurator">
+  <label>
+    FanPage to publish
+    <select name="pageId">
+      {{#each pages}}
+        <option value="{{{id}}}">{{{name}}}</option>
+      {{/each}}
+    </select>
+  </label>
+
+  <label>
+    Title
+    <input name="stream[title]" type="text" required/>
+  </label>
+
+  <label>
+    Description
+    <input name="stream[description]" type="text" required/>
+  </label>
+
+  <label>
+    Save Video?
+    <input name="stream[save_vod]" data-value-type="boolean" value="true" data-unchecked-value="false" type="checkbox">
+  </label>
+
+  <label>
+    Webcam?
+    <input name="webcam" data-value-type="boolean" value="true" data-unchecked-value="false" type="checkbox">
+  </label>
+
+  <input name="stream[status]" value="LIVE_NOW" type="hidden">
+  <input class="btn btn-default validate" type="submit">
+  <button type="reset">STOP!</button>
+
+  <a data-hook="qr-code" href=""></a>
+</form>

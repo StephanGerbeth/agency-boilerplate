@@ -18,6 +18,7 @@ module.exports = AmpersandState.extend({
         if(this.moduleId) {
             data = new require.cache[this.moduleId].exports(data);
         }
+        console.log('PFUI', data);
         callback(data, this.from);
     }
 });

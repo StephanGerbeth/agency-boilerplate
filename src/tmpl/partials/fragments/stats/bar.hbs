@@ -1,0 +1,20 @@
+---
+list:
+  -
+    title: 'Bar-A'
+    weight: 20
+  -
+    title: 'Bar-B'
+    weight: 40
+  -
+    title: 'Bar-C'
+    weight: 30
+---
+<ul class="partial" data-partial="fragments/stats/bar">
+  {{#each list}}
+    <li class="bar" style="width: {{{width}}}%;">
+      <strong>{{{name}}}</strong>
+      <strong>{{{weight}}}%</strong>
+    </li>
+  {{/each}}
+</ul>

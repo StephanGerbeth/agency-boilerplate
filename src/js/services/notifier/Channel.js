@@ -33,7 +33,7 @@ module.exports = AmpersandState.extend(dataTypeDefinition, {
 
     initialize: function() {
         AmpersandState.prototype.initialize.apply(this, arguments);
-
+        console.log('CHANNEL', this.name);
         this.on('change:connected', function(model, value) {
             if(value === true) {
                 this.onConnect(this);
@@ -108,7 +108,7 @@ module.exports = AmpersandState.extend(dataTypeDefinition, {
     },
 
     subscribe: function(eventName, callback) {
-        if(this.connected) {
+        if(this.connected) {             
             this.websocket.subscribe(eventName + this.postfix, function(msg, from) {
                 console.log('resolved message', msg, 'on channel', !!!this.name ? '*' : this.name, 'by event', eventName + this.postfix,'from', from);
                 callback(msg, this.userList.get(from));

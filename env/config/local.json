@@ -38,10 +38,20 @@
                   "appSecret": "01ea97f939594e0c4dd162a409fe1ba8"
                 }
             }, {
-                "module": "../../../../env/routes/facebook/doPost",
+                "module": "../../../../env/routes/facebook/feed/post",
                 "options": {}
             }, {
+                "module": "../../../../env/routes/facebook/feed/video",
+                "options": {
+                  "google": {
+                    "apiKey": "AIzaSyCMTs50Q5J64VTBdpyZTPMWENqXm8_B9dE"
+                  }
+                }
+            }, {
                 "module": "../../../../env/routes/facebook/feed/subscription",
+                "options": {}
+            }, {
+                "module": "../../../../env/routes/word/wortschatz",
                 "options": {}
             }]
         },

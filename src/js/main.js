@@ -39,15 +39,15 @@ module.exports = global.gp = {
     $(function() {
         // if(!url.parse(global.location.href, true).query.session) {
             js.parse();
-            global.gp.connect(function(channel, qrCode) {
-                console.log('voila', channel, qrCode);
-                channel.userList.on('add', function() {
-                    setTimeout(function() {
-                        channel.send('channel-1', new Vector(0.5, 0.5));
-                    }, 1000);
-                });
-
-            });
+            // global.gp.connect(function(channel, qrCode) {
+            //     console.log('voila', channel, qrCode);
+            //     channel.userList.on('add', function() {
+            //         setTimeout(function() {
+            //             channel.send('channel-1', new Vector(0.5, 0.5));
+            //         }, 1000);
+            //     });
+            //
+            // });
         // } else {
         //     js.parse();
         // }

@@ -1,0 +1,7 @@
+---
+
+---
+<div class="partial controller" data-partial="fragments/stats" data-controller="./partials/fragments/Stats" {{#if target}}data-target="{{{target}}}"{{/if}}>
+  {{{mixin "fragments/stats/progress" target=".controller[data-controller='./partials/fragments/Stats']"}}}
+  {{{mixin "fragments/stats/bar-chart" target=".controller[data-controller='./partials/fragments/Stats']"}}}
+</div>

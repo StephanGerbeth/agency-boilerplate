@@ -1,0 +1,20 @@
+---
+id: 'GAME'
+class: 'controller'
+---
+{{#mixin "components/c3_view" this}}
+  {{#content "attributes"}}
+    data-partial="components/c3_view/c3-2_game"
+    data-controller="./partials/components/view/Game"
+    {{#with target}}
+      data-target="{{{this}}}"
+    {{/with}}
+  {{/content}}
+  {{#content "placeholder"}}
+    {{{mixin "elements/headline/h1"}}}
+    {{{mixin "fragments/notifier"}}}
+    {{{mixin "fragments/stats" target=".controller[data-controller='./partials/fragments/Notifier']"}}}
+    {{{mixin "fragments/slider"}}}
+    {{{mixin "fragments/ticker" target=".controller[data-controller='./partials/fragments/Notifier']"}}}
+  {{/content}}
+{{/mixin}}

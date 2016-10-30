@@ -32,6 +32,12 @@ class Facebook extends require('events'){
         }, reject);
     }
 
+    api(token) {
+
+        FB.setAccessToken(token);
+        return FB.api.apply(FB, Array.prototype.slice.call(arguments, 1));
+    }
+
     getPages(token, resolve, reject) {
         FB.setAccessToken(token);
         FB.api('me/accounts', {}, function(res) {
@@ -57,7 +63,7 @@ class Facebook extends require('events'){
         });
     }
 
-    doPost(token, id, data, resolve, reject) {
+    createPost(token, id, data, resolve, reject) {
         FB.setAccessToken(token);
         FB.api(id + '/feed', 'post', data, function (res) {
             if(!res || res.error) {
@@ -68,9 +74,27 @@ class Facebook extends require('events'){
         });
     }
 
+    updatePost(token, id, data, resolve, reject) {
+        FB.setAccessToken(token);
+        FB.api(id, 'post', data, function (res) {
+            if(!res || res.error) {
+                console.log(!res ? 'error occurred' : res.error);
+                reject();
+            }
+            resolve(res.id);
+        });
+    }
+
     subscribePage(token, id, resolve, reject) {
+        console.log('subscribe ID', id);
         this.subscribeApp(token, id, function() {
             subscribe(id, 'feed',resolve, reject);
+        }, reject);
+    }
+
+    unsubscribePage(token, id, resolve, reject) {
+        this.subscribeApp(token, id, function() {
+            unsubscribe(id, 'feed', resolve, reject);
         }, reject);
     }
 
@@ -136,17 +160,35 @@ function generateAppAccessToken(callback) {
 
 function subscribe(id, fields, resolve, reject) {
     generateAppAccessToken(function(res) {
+        console.log('SUBSCRIBE', res, id);
         FB.setAccessToken(res.access_token);
         FB.api(id + '/subscriptions', 'post', {
             object: 'page',
-            callback_url: 'https://4c991553.eu.ngrok.io/facebook/feed/subscription',
+            callback_url: 'https://46dc60b0.eu.ngrok.io/facebook/feed/subscription',
             fields: fields,
             verify_token: 'PLEASE_CHANGE_ME',
         }, function() {
-            console.log('TOLL', arguments);
             if(!res || res.error) {
                 reject();
             }
+            resolve();
+        });
+    });
+}
+
+function unsubscribe(id, fields, resolve, reject) {
+    generateAppAccessToken(function(res) {
+        console.log('ACCESS', res, id);
+        FB.setAccessToken(res.access_token);
+        FB.api(FB.options('appId') + '/subscriptions', 'delete', {
+            object: 'page',
+            fields: fields
+        }, function(res) {
+            console.log('UNSUBSCRIBE',res);
+            if(!res || res.error) {
+                reject();
+            }
+
             resolve();
         });
     });

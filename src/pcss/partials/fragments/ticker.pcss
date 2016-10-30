@@ -1,0 +1,44 @@
+@import "./ticker/list.pcss";
+
+.partial[data-partial="fragments/ticker"] {
+  position: relative;
+  overflow: hidden;
+
+  ul {
+    animation-fill-mode: both;
+    animation-timing-function: linear;
+
+    &.partial[data-partial="fragments/ticker/list"] {
+      animation-name: ticker;
+
+      & + .partial[data-partial="fragments/ticker/list"] {
+        position: absolute;
+        top: 0;
+        transform: translate3d(100%, 0, 0);
+        animation-name: next-ticker;
+      }
+    }
+  }
+}
+
+@keyframes ticker {
+  0% {
+    transform: translate3d(0%, 0, 0);
+    visibility: visible;
+  }
+
+  100% {
+    transform: translate3d(-100%, 0, 0);
+
+  }
+}
+
+@keyframes next-ticker {
+  0% {
+    transform: translate3d(100%, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(0%, 0, 0);
+  }
+}

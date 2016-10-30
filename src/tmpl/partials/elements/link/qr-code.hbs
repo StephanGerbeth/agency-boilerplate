@@ -1,0 +1,21 @@
+---
+id: #string
+class: #string
+url: "#image-link"
+title: "Image Link"
+target: "_self"
+rel: "next"
+picture: {}
+headline: {}
+---
+{{#mixin "elements/link" this}}
+  {{#content "attributes"}}
+    data-partial="elements/link/image"
+  {{/content}}
+  {{#content "title"}}
+    {{{mixin "elements/picture" picture}}}
+    {{#block "placeholder"}}
+      {{{mixin "elements/headline/h4" headline}}}
+    {{/block}}
+  {{/content}}
+{{/mixin}}

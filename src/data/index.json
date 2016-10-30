@@ -6,11 +6,11 @@
         "title": "Social Title",
         "description": "Social Description",
         "image": {
-            "url": "image url",
-            "secureUrl": "secure image url",
+            "url": "http://4c991553.eu.ngrok.io/dev/assets/img/blume.jpg",
+            "secureUrl": "https://4c991553.eu.ngrok.io/dev/assets/img/blume.jpg",
             "type": "image/png",
-            "width": 200,
-            "height": 200
+            "width": 1920,
+            "height": 1080
         },
         "localization": "de_DE"
     },

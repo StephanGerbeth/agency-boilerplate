@@ -1,0 +1,52 @@
+---
+list:
+  -
+    picture:
+      title: "sample image"
+      class: #css-class
+      sources:
+        - {type: 'lg', absolute: true, srcset: '//dummyimage.com/1920x1080/ff0000/fff'}
+        - {type: 'md', absolute: true, srcset: '//dummyimage.com/1199x674/ff0000/fff'}
+        - {type: 'sm', absolute: true, srcset: '//dummyimage.com/991x557/ff0000/fff'}
+        - {type: 'xs', absolute: true, srcset: '//dummyimage.com/767x431/ff0000/fff'}
+        - {type: 'default', absolute: true, srcset: '//dummyimage.com/479x269/ff0000/fff'}
+  -
+    picture:
+      title: "sample image"
+      class: #css-class
+      sources:
+        - {type: 'lg', absolute: true, srcset: '//dummyimage.com/1920x1080/00ff00/fff'}
+        - {type: 'md', absolute: true, srcset: '//dummyimage.com/1199x674/00ff00/fff'}
+        - {type: 'sm', absolute: true, srcset: '//dummyimage.com/991x557/00ff00/fff'}
+        - {type: 'xs', absolute: true, srcset: '//dummyimage.com/767x431/00ff00/fff'}
+        - {type: 'default', absolute: true, srcset: '//dummyimage.com/479x269/00ff00/fff'}
+  -
+    picture:
+      title: "sample image"
+      class: #css-class
+      sources:
+        - {type: 'lg', absolute: true, srcset: '//dummyimage.com/1920x1080/0000ff/fff'}
+        - {type: 'md', absolute: true, srcset: '//dummyimage.com/1199x674/0000ff/fff'}
+        - {type: 'sm', absolute: true, srcset: '//dummyimage.com/991x557/0000ff/fff'}
+        - {type: 'xs', absolute: true, srcset: '//dummyimage.com/767x431/0000ff/fff'}
+        - {type: 'default', absolute: true, srcset: '//dummyimage.com/479x269/0000ff/fff'}
+  -
+    picture:
+      title: "sample image"
+      class: #css-class
+      sources:
+        - {type: 'lg', absolute: true, srcset: '//dummyimage.com/1920x1080/ffff00/fff'}
+        - {type: 'md', absolute: true, srcset: '//dummyimage.com/1199x674/ffff00/fff'}
+        - {type: 'sm', absolute: true, srcset: '//dummyimage.com/991x557/ffff00/fff'}
+        - {type: 'xs', absolute: true, srcset: '//dummyimage.com/767x431/ffff00/fff'}
+        - {type: 'default', absolute: true, srcset: '//dummyimage.com/479x269/ffff00/fff'}
+---
+<div class="partial controller swiper-container" data-partial="fragments/slider" data-controller="./partials/fragments/Slider">
+  <div class="swiper-wrapper">
+    {{#each list}}
+      <div class="swiper-slide">
+        {{{mixin "elements/picture" picture}}}
+      </div>
+    {{/each}}
+  </div>
+</div>

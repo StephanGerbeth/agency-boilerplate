@@ -1,0 +1,19 @@
+---
+id: 'STARTSCREEN'
+class: 'controller'
+connect:
+  permissions: "manage_pages,publish_pages"
+---
+{{#mixin "components/c3_view" this}} 
+  {{#content "attributes"}}
+    data-partial="components/c3_view/c3-0_startscreen"
+    data-controller="./partials/components/view/Startscreen"
+    {{#with target}}
+      data-target="{{{this}}}"
+    {{/with}}
+  {{/content}}
+  {{#content "placeholder"}}
+    {{{mixin "elements/headline/h1"}}}
+    {{{mixin "elements/link/facebook/connect" connect}}}
+  {{/content}}
+{{/mixin}}

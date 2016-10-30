@@ -42,13 +42,14 @@ module.exports = (function (window) {
             window.requestAnimationFrame(callback);
         },
 
-        addLoop: function (duration, callback) {
+        addLoop: function (duration, onTick, onEnd) {
             var handler = {
                 id: null,
                 begin: 0,
                 current: 0,
                 duration: duration || -1,
-                callback: callback
+                onTick: onTick,
+                onEnd: onEnd
             };
             (function animloop(time) {
                 handler.id = window.requestAnimationFrame(animloop);
@@ -57,9 +58,9 @@ module.exports = (function (window) {
                     handler.current = (time - handler.begin) / duration;
                     if(handler.current >= 1) {
                         window.cancelRequestAnimationFrame(handler.id);
-                        handler.callback(1);
+                        (handler.onEnd || handler.onTick)(1);
                     } else {
-                        handler.callback(handler.current);
+                        handler.onTick(handler.current);
                     }
                 }
             })();

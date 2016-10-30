@@ -16,7 +16,11 @@ exports.register = function (server, options, next) {
         handler: function(request, reply) {
             reply(makeRequest(request).then(function(pages) {
                 return request
-                    .generateResponse({code: '200', data: {pages: pages.map(function(page) { return page.getId();})}})
+                    .generateResponse({code: '200', data: {
+                        pages: pages.map(function(page) {
+                            return page;
+                        })
+                    }})
                     .code(200);
             }, function() {
                 return request

@@ -26,6 +26,7 @@ module.exports = AmpersandState.extend({
         }
 
         getSocketIO(function() {
+            console.log('TOLL', this.name);
             this.connection = global.io.connect('//' + getSocketIOHost() + '/' + this.name, {
                 query: {token: token}
             });
@@ -87,11 +88,13 @@ function messageToJSON(messageTypes, messageType, obj) {
     return obj.toJSON();
 }
 
-function messageToObject(data, callback) {    
+function messageToObject(data, callback) {
+    console.log('DATA', data);
     if(data.msg) {
         console.log('WEBSOCKET MESSAGETOOBJECT', new (require.cache[data.msg.moduleId].exports)());
         callback(new (require.cache[data.msg.moduleId].exports)(data.msg.data), data.msg.from);
     } else {
+        console.log('AHA', data);
         receivePattern.set(data).getData(callback);
     }
 }

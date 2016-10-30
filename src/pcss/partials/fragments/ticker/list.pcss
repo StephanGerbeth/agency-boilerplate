@@ -1,0 +1,27 @@
+@import "./entry.pcss";
+
+.partial[data-partial="fragments/ticker/list"] {
+  display: inline-block;
+  white-space: nowrap;
+  padding: 0;
+  margin: 0;
+  vertical-align: middle;
+
+  &:before {
+    content: '';
+    display: inline-block;
+    height: 6em;
+    vertical-align: middle;
+  }
+
+  li {
+    display: inline-block;
+    vertical-align: middle;  
+
+    &.bumper {
+      text-align: center;
+      width: 100vw;
+    }
+  }
+
+}
