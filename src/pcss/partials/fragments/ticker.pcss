@@ -1,19 +1,23 @@
+@import "./ticker/bumper.pcss";
 @import "./ticker/list.pcss";
 
 .partial[data-partial="fragments/ticker"] {
   position: relative;
   overflow: hidden;
+  width: 100%;
 
   ul {
     animation-fill-mode: both;
     animation-timing-function: linear;
 
     &.partial[data-partial="fragments/ticker/list"] {
+      position: relative;
       animation-name: ticker;
 
       & + .partial[data-partial="fragments/ticker/list"] {
         position: absolute;
         top: 0;
+        left: 0;
         transform: translate3d(100%, 0, 0);
         animation-name: next-ticker;
       }

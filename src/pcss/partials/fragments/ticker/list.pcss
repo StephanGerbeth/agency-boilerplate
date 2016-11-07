@@ -10,17 +10,45 @@
   &:before {
     content: '';
     display: inline-block;
-    height: 6em;
+    height: 9em;
     vertical-align: middle;
   }
 
-  li {
+  > li {
     display: inline-block;
-    vertical-align: middle;  
+    vertical-align: middle;
+    height: 6em;
+    background-color: white;
 
     &.bumper {
       text-align: center;
       width: 100vw;
+
+      .partial[data-partial="fragments/ticker/bumper"] {
+        position: relative;
+        top: -1.5em;
+
+        img {
+          height: 9em;
+          image-rendering: crisp-edges;
+        }
+      }
+    }
+
+    ul {
+      height: 100%;
+
+      &:before {
+        content: '';
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+        width: 1px;
+      }
+
+      li {
+        vertical-align: middle;
+      }
     }
   }
 

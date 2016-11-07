@@ -6,7 +6,7 @@ var dataTypeDefinition = require('./dataTypeDefinition');
 module.exports = AmpersandView.extend(dataTypeDefinition, {
 
     constructor: function() {
-        console.log('AJA');
+    
     },
 
     initialize: function(options) {

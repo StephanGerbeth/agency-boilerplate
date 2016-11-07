@@ -1,16 +1,21 @@
 "use strict";
 
-var packages = require('../../packages');
+var packages = null;
 
-module.exports = global.js = {
-    parse: function (node) {
-        node = node || document.documentElement;
-        var nodes = Array.prototype.slice.call(node.querySelectorAll('.controller[data-controller]'));
-        if(matches(node, '.controller[data-controller]')) {
-            nodes.push(node);
-        }
-        return render(nodes);
+module.exports = global.js = function(pkg) {
+    if(!packages) {
+        packages = pkg;
     }
+    return {
+        parse: function (node) {
+            node = node || document.documentElement;
+            var nodes = Array.prototype.slice.call(node.querySelectorAll('.controller[data-controller]'));
+            if(matches(node, '.controller[data-controller]')) {
+                nodes.push(node);
+            }
+            return render(nodes);
+        }
+    };
 };
 
 function render(nodes) {
@@ -51,6 +56,6 @@ function initController(node) {
     }
 }
 
-function matches(el, selector) {    
+function matches(el, selector) {
     return (el.matches || el.matchesSelector || el.msMatchesSelector || el.mozMatchesSelector || el.webkitMatchesSelector || el.oMatchesSelector).call(el, selector);
 }

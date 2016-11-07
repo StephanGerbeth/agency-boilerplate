@@ -17,9 +17,13 @@ module.exports = AmpersandCollection.extend({
         }
     },
 
+    initialize: function() {
+        AmpersandCollection.prototype.initialize.apply(this, arguments);
+    },
+
     getMostRelevant: function(max) {
         var result = new Faltu(this.serialize()).find().limit(max || 3).get();
-        this.reset([]);        
+        this.reset([]);
         return result;
     }
 });

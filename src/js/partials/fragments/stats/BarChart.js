@@ -2,7 +2,6 @@
 
 var Controller = require('../../../base/Controller');
 var DomModel = require('../../../base/DomModel');
-var Collection = require('ampersand-collection');
 var Template = require('../../../base/Template');
 var tmpl = new Template(require('../../../../tmpl/partials/fragments/stats/bar.hbs'));
 
@@ -10,31 +9,10 @@ module.exports = Controller.extend({
 
     modelConstructor: DomModel.extend({
         session: {
-            values: {
-                type: 'AmpersandCollection',
+            relevantKey: {
+                type: 'string',
                 required: true,
-                default: function() {
-                    return new Collection([{
-                        weight: 20,
-                        title: 'ZWANZIG'
-                    }, {
-                        weight: 5,
-                        title: 'FÜNF'
-                    }, {
-                        weight: 10,
-                        title: 'ZEHN'
-                    }, {
-                        weight: 40,
-                        title: 'VIERZIG'
-                    }, {
-                        weight: 30,
-                        title: 'DREISSIG'
-                    }], {
-                        comparator: function(objA, objB) {
-                            return objA.weight < objB.weight;
-                        }
-                    });
-                }
+                default: null
             }
         }
     }),
@@ -43,6 +21,7 @@ module.exports = Controller.extend({
         Controller.prototype.initialize.apply(this, arguments);
 
         if(this.targetModel) {
+            this.model.synonyms = this.targetModel.synonyms;
             this.targetModel.on('change:status', onStatusChange.bind(this));
         }
     }
@@ -51,12 +30,16 @@ module.exports = Controller.extend({
 function onStatusChange(model, value) {
     switch(value) {
         case model.TYPES.RESULT: {
-            var result = prepareResult(model.hashtags.getMostRelevant());
-            console.log(result);
-            this.el.innerHTML = tmpl.render({list: result});
-            global.animationFrame.add(function() {
-                this.el.querySelector('ul').classList.add('js-bar-animate');
-            }.bind(this));
+            if(model.hashtags.length) {
+                var result = prepareResult(model.hashtags.getMostRelevant());
+                this.model.relevantKey = result[0].name;
+                this.el.innerHTML = tmpl.render({list: result});
+                global.animationFrame.add(function() {
+                    this.el.querySelector('ul').classList.add('js-bar-animate');
+                }.bind(this));
+            } else {
+                this.el.innerHTML = '';
+            }
             break;
         }
         default: {

@@ -1,6 +1,6 @@
 "use strict";
 
-var js = require('./services/parser/js');
+var js = require('./services/parser/js')(require('./packages'));
 var Client = require('./services/notifier/Client');
 var url = require('url');
 var Vector = require('./base/Vector');

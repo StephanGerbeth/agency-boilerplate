@@ -42,14 +42,16 @@ exports.register = function (server, options, next) {
                     parse: false
                 }
             },
-            handler: function(request, reply) {
+            handler: function(request, reply) {                
                 reply(verifyRequest(request).then(function() {
                     console.log('POST');
                     return request
+                        .generateResponse('')
                         .code(200);
                 }, function(message) {
                     console.log(message);
                     return request
+                        .generateResponse('')
                         .code(200);
                 }));
             }
@@ -58,7 +60,7 @@ exports.register = function (server, options, next) {
 
     next();
 };
- 
+
 function verifyRequest(request) {
     return new global.Promise(function (resolve, reject) {
         console.log('TADA', JSON.stringify(request.payload));

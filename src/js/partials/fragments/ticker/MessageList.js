@@ -35,7 +35,7 @@ module.exports = AmpersandCollection.extend({
     },
 
     add: function() {
-        console.log('LENGTH', this.length);
+        // console.log('LENGTH', this.length);
         if (this.length > this.limit-1) {
             this.at(this.length - 1).destroy();
         }

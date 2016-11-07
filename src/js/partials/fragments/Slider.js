@@ -10,14 +10,34 @@ module.exports = Controller.extend({
         Controller.prototype.initialize.apply(this, arguments);
 
 
-        new Swiper(this.el, {
-            autoHeight: true,
+        this.slider = new Swiper(this.el, {
+            autoHeight: false,
             effect: 'fade',
             fade: {
               crossFade: false
             }
         });
 
-
+        if(this.targetModel) {
+            collectSynonyms(this.el.querySelectorAll('.swiper-slide[data-key]'), this.targetModel.synonyms);
+            this.targetModel.on('change:relevantKey', onRelevantKeyChange.bind(this));
+        }
     }
 });
+
+function onRelevantKeyChange(model, value) {
+    if(this.el.querySelector('.swiper-slide-next[data-key="' + value + '"]')) {
+        console.log('VALUE', value);
+        this.slider.slideNext();
+    }
+}
+
+function collectSynonyms(nodes, synonyms) {
+    [].forEach.call(nodes, function(node) {
+        var key = $(node).data('key');
+        synonyms[key] = key;
+        $(node).data('synonyms').split(',').forEach(function(value) {
+            synonyms[value] = key;
+        });
+    });
+}

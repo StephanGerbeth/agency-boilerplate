@@ -15,7 +15,7 @@ module.exports = Controller.extend({
 
     initialize: function() {
         Controller.prototype.initialize.apply(this, arguments);
-        console.log('WHAT', this.model);
+        // console.log('WHAT', this.model);
         this.targetModel.on('change:profile', function(model, profile) {
             $.ajax('/facebook/setup', {
                 method: 'POST',
@@ -31,7 +31,7 @@ module.exports = Controller.extend({
                             }
                         },
                         success: function(result) {
-                            console.log('https://www.facebook.com/', result.data.id);
+                            // console.log('https://www.facebook.com/', result.data.id);
 
                             $.ajax('/facebook/feed/video', {
                                 method: 'POST',
@@ -46,7 +46,7 @@ module.exports = Controller.extend({
                                     }
                                 },
                                 success: function(result) {
-                                    console.log('https://www.facebook.com/', result);
+                                    // console.log('https://www.facebook.com/', result);
                                 }
                             });
                         }

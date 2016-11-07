@@ -11,6 +11,10 @@ module.exports = Controller.extend({
                 type: 'string',
                 required: true,
                 default: 'STARTSCREEN'
+            },
+            url: {
+                type: 'string',
+                default: null
             }
         }
     }),
@@ -22,8 +26,12 @@ module.exports = Controller.extend({
     initialize: function() {
         Controller.prototype.initialize.apply(this, arguments);
 
-        this.targetModel.on('change:profile', function(model, profile) {
+        this.targetModel.on('change:profile', function() {
             console.log('PROFILE');
+            this.model.view = 'CONFIGURATOR';
+        }.bind(this));
+
+        this.model.on('change:url', function() {            
             this.model.view = 'GAME';
         }.bind(this));
 

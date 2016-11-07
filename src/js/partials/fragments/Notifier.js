@@ -63,6 +63,10 @@ module.exports = Controller.extend({
                 default: function() {
                     return [];
                 }
+            },
+            url: {
+                type: 'string',
+                default: null
             }
         }
     }),
@@ -76,22 +80,25 @@ module.exports = Controller.extend({
                 this.client.auth().then(function(client) {
                     client.registerChannels([{
                         name: video.id,
-                        onConnect: onConnect.bind(this),
+                        onConnect: function(channel) {
+                            this.model.url = video.shortUrl;
+                            onConnect.bind(this)(channel);
+                        }.bind(this),
                         onDisconnect: function(channel) {
                             console.log('DISCONNECTED CHANNEL', channel.get('name'));
-                        }
+                        }.bind(this)
                     }]);
                 }.bind(this));
             }.bind(this));
 
-            addTestData.bind(this)(0);
+            // addTestData.bind(this)(0);
         }
     }
 });
 
 function addTestData(count) {
     setTimeout(function() {
-        this.model.messageList.add(test[count%3]);    
+        this.model.messageList.add(test[count%3]);
         addTestData.bind(this)(++count);
     }.bind(this), 3000);
 }
@@ -102,16 +109,16 @@ function onConnect(channel) {
     //     // callback(channel, qrCode);
     // });
     channel.subscribe('comment:add', function(data) {
-        console.log(this.model);
-        console.log(JSON.stringify(data));
+        // console.log(this.model);
+        // console.log(JSON.stringify(data));
         this.model.messageList.add(data);
         // (data.message.match(/\S*#(?:\[[^\]]+\]|\S+)/g) || []).forEach(function(value) {
         //     this.model.hashtags.push(value.replace('#', ''));
         // }.bind(this));
 
         // 'https://graph.facebook.com/' + data.sender_id + '/picture?type=large'
-        this.users.push(data.sender_id);
+        this.model.users.push(data.sender_id);
 
-        console.log(countBy(this.model.hashtags, identity));
+        // console.log(countBy(this.model.hashtags, identity));
     }.bind(this));
 }

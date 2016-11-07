@@ -8,7 +8,7 @@ var User = require('../../services/facebook/User');
 exports.register = function (server, options, next) {
 
     server.route({
-        method: ['GET','POST'],
+        method: ['GET','POST'], 
         path: "/auth/session",
         config: {
             auth: false,

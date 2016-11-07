@@ -1,6 +1,8 @@
 ---
 list:
   -
+    key: "#red"
+    synonyms: "#rot"
     picture:
       title: "sample image"
       class: #css-class
@@ -11,6 +13,8 @@ list:
         - {type: 'xs', absolute: true, srcset: '//dummyimage.com/767x431/ff0000/fff'}
         - {type: 'default', absolute: true, srcset: '//dummyimage.com/479x269/ff0000/fff'}
   -
+    key: "#green"
+    synonyms: "#grün,#gruen"
     picture:
       title: "sample image"
       class: #css-class
@@ -21,6 +25,8 @@ list:
         - {type: 'xs', absolute: true, srcset: '//dummyimage.com/767x431/00ff00/fff'}
         - {type: 'default', absolute: true, srcset: '//dummyimage.com/479x269/00ff00/fff'}
   -
+    key: "#blue"
+    synonyms: "#blau"
     picture:
       title: "sample image"
       class: #css-class
@@ -31,6 +37,8 @@ list:
         - {type: 'xs', absolute: true, srcset: '//dummyimage.com/767x431/0000ff/fff'}
         - {type: 'default', absolute: true, srcset: '//dummyimage.com/479x269/0000ff/fff'}
   -
+    key: "#yellow"
+    synonyms: "#gelb"
     picture:
       title: "sample image"
       class: #css-class
@@ -41,10 +49,10 @@ list:
         - {type: 'xs', absolute: true, srcset: '//dummyimage.com/767x431/ffff00/fff'}
         - {type: 'default', absolute: true, srcset: '//dummyimage.com/479x269/ffff00/fff'}
 ---
-<div class="partial controller swiper-container" data-partial="fragments/slider" data-controller="./partials/fragments/Slider">
+<div class="partial controller swiper-container" data-partial="fragments/slider" data-controller="./partials/fragments/Slider" {{#if target}}data-target="{{{target}}}"{{/if}}>
   <div class="swiper-wrapper">
     {{#each list}}
-      <div class="swiper-slide">
+      <div class="swiper-slide" data-key="{{{key}}}" data-synonyms="{{{synonyms}}}">
         {{{mixin "elements/picture" picture}}}
       </div>
     {{/each}}

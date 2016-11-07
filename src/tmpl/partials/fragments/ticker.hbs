@@ -20,9 +20,8 @@ list:
       id: 670728662
       name: 'Ulrich Erdmann'
     message: 'Sein ist wahrgenommen werden.'
-nextList:
 ---
 <div class="partial controller" data-partial="fragments/ticker" data-controller="./partials/fragments/Ticker" {{#if target}}data-target="{{{target}}}"{{/if}}>
   {{{mixin "fragments/ticker/list" list=list}}}
-  {{{mixin "fragments/ticker/list" list=nextList}}}
+  {{{mixin "fragments/ticker/list" list=list}}}
 </div>

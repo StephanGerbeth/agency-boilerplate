@@ -18,6 +18,5 @@ module.exports = Controller.extend({
 
     initialize: function() {
         Controller.prototype.initialize.apply(this, arguments);
-        console.log('AHA');
     }
 });

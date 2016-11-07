@@ -5,13 +5,7 @@ var View = require('../View');
 module.exports = View.extend({
 
     session: {
-        hashtagOrder: {
-            type: 'array',
-            required: true,
-            default: function() {
-                return ['red', 'green', 'blue'];
-            }
-        }
+        
     },
 
     events: {
@@ -22,5 +16,11 @@ module.exports = View.extend({
         View.prototype.initialize.apply(this, arguments);
 
         console.log('GAME');
+    },
+
+    onVisible: function() {
+        View.prototype.onVisible.apply(this, arguments);
+
+
     }
 });

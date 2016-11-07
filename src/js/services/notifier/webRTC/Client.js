@@ -29,7 +29,7 @@ module.exports = AmpersandState.extend({
 });
 
 function messageToJSON(channelName, eventName, msg) {
-    console.log(msg);
+    // console.log(msg);
     return transferPattern.set({
         'channel': channelName,
         'event': eventName,

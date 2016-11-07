@@ -1,6 +1,9 @@
 ---
 id: 'GAME'
 class: 'controller'
+ticker:
+  list: []
+  nextList: []
 ---
 {{#mixin "components/c3_view" this}}
   {{#content "attributes"}}
@@ -14,7 +17,7 @@ class: 'controller'
     {{{mixin "elements/headline/h1"}}}
     {{{mixin "fragments/notifier"}}}
     {{{mixin "fragments/stats" target=".controller[data-controller='./partials/fragments/Notifier']"}}}
-    {{{mixin "fragments/slider"}}}
-    {{{mixin "fragments/ticker" target=".controller[data-controller='./partials/fragments/Notifier']"}}}
+    {{{mixin "fragments/slider" target=".controller[data-controller='./partials/fragments/stats/BarChart']"}}}
+    {{{mixin "fragments/ticker" ticker target=".controller[data-controller='./partials/fragments/Notifier']"}}}
   {{/content}}
 {{/mixin}}

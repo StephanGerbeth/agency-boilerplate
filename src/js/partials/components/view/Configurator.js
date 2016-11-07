@@ -32,7 +32,8 @@ module.exports = View.extend({
 
     events: {
         'submit form': onSubmit,
-        'click button[type="reset"]': onReset
+        'click button[type="reset"]': onReset,
+        'click button.fullscreen': onFullscreen
     },
 
     bindings: {
@@ -79,13 +80,14 @@ function onSubmit(e) {
         }, function(result) {
             console.log('https://www.facebook.com/', result.data.url);
             this.model.video = result.data;
-
+            this.targetModel.url = result.shortUrl;
 
         }.bind(this));
     }
 }
 
 function onReset(e) {
+    console.log('RESET');
     e.preventDefault();
     var form = $(this.el.querySelector('form'));
     sendRequest({
@@ -99,6 +101,11 @@ function onReset(e) {
     }, function() {
         this.model.video = null;
     }.bind(this));
+}
+
+function onFullscreen(e) {
+    e.preventDefault();
+    this.el.parentNode.requestFullscreen();
 }
 
 function sendRequest(data, callback) {

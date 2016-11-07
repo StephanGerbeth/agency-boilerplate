@@ -2,7 +2,7 @@
 
 const crypto = require('crypto');
 
-var Signature = function(xhub, options){
+var Signature = function(xhub, options){ 
     this.xhub = xhub;
     options = options || {};
     this.algorithm = options.algorithm || 'sha1';
