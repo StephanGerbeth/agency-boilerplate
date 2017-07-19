@@ -3,6 +3,9 @@
   "version": "4.0.0",
   "description": "agency - frontend boilerplate",
   "main": "none",
+  "engines": {
+    "node": ">=8"
+  },
   "scripts": {
     "heroku": "NODE_ENV=production node node_modules/gulp/bin/gulp run --serverConfig=./env/config/server.json --gulpFileMap=./env/config/gulp-file-map.json --server=agency-server",
     "build": "NODE_ENV=build node node_modules/gulp/bin/gulp build --serverConfig=/env/config/hapi/config --gulpTaskConfig=/env/config/",
